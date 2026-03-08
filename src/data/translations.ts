@@ -75,14 +75,13 @@ export const translations: Record<string, Record<string, string>> = {
     "about.p3": "Our goal is to create a cohesive community of players who value teamwork above personal achievements.",
 
     // Requirements
-    "requirements.title": "Candidate Requirements",
-    "req.age": "Must be 18 years or older",
-    "req.hours": "Minimum 500 hours in Squad",
-    "req.mic": "Working microphone required",
-    "req.discord": "Must be active on clan Discord",
-    "req.activity": "Active at least 3 times per week",
-    "req.discipline": "Willingness to follow orders and discipline",
-    "req.training": "Complete a trial period (2 weeks)",
+    "requirements.title": "Clan Membership Requirements",
+    "req.age": "Age — 18+ (exceptions determined by senior staff)",
+    "req.behavior": "Maturity, stress resistance, composure in critical situations. Toxic individuals are not welcome — they are immediately removed from the clan",
+    "req.mic": "Microphone — required",
+    "req.knowledge": "Basic Squad knowledge — understanding of in-game mechanics, compass orientation, clear coordination",
+    "req.activity": "Active participation in clan life — events, clan battles, training sessions",
+    "req.rules": "By joining the clan, you confirm that you have read the rules and take full responsibility for your actions",
 
     // Join
     "join.title": "How to Join",
