@@ -2,8 +2,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { CheckCircle } from "lucide-react";
 
 const reqKeys = [
-  "req.age", "req.hours", "req.mic", "req.discord",
-  "req.activity", "req.discipline", "req.training",
+  "req.age", "req.behavior", "req.mic", "req.knowledge",
+  "req.activity", "req.rules",
 ];
 
 export default function RequirementsSection() {
