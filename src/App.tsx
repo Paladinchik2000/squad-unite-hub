@@ -27,6 +27,7 @@ const App = () => (
               <Route path="/auth" element={<Auth />} />
               <Route path="/cabinet" element={<Cabinet />} />
               <Route path="/roster" element={<Roster />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </LanguageProvider>
