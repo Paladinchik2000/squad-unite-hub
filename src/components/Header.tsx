@@ -1,6 +1,8 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import ocoLogo from "@/assets/oco-logo.png";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 
 const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq"] as const;
