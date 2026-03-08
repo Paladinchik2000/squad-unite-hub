@@ -10,7 +10,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { Crown, Shield, Swords, UserRound, Search, X } from "lucide-react";
+import { Crown, Shield, Swords, UserRound, Search, X, Trash2 } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -69,6 +69,19 @@ export default function Admin() {
       setProfiles((prev) =>
         prev.map((p) => (p.id === profileId ? { ...p, clan_role: newRole } : p))
       );
+    }
+    setUpdating(null);
+  };
+
+  const handleDelete = async (profileId: string, nickname: string) => {
+    if (!window.confirm(lang === "ru" ? `Удалить ${nickname} из клана?` : `Remove ${nickname} from clan?`)) return;
+    setUpdating(profileId);
+    const { error } = await supabase.from("profiles").delete().eq("id", profileId);
+    if (error) {
+      toast({ title: "Ошибка", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: lang === "ru" ? "Участник удалён" : "Member removed" });
+      setProfiles((prev) => prev.filter((p) => p.id !== profileId));
     }
     setUpdating(null);
   };
@@ -146,7 +159,6 @@ export default function Admin() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg bg-card border border-border"
                   >
-                    {/* Avatar + name */}
                     <div className="flex items-center gap-3 flex-1 min-w-0">
                       <Avatar className="h-10 w-10 border border-border shrink-0">
                         <AvatarImage src={member.avatar_url || undefined} />
@@ -168,38 +180,47 @@ export default function Admin() {
                       </div>
                     </div>
 
-                    {/* Role selector */}
-                    <div className="flex gap-1.5 flex-wrap">
-                      {roles.map((role) => {
-                        const rc = roleConfig[role];
-                        const isActive = member.clan_role === role;
-                        const isUpdating = updating === member.id;
-                        return (
-                          <button
-                            key={role}
-                            disabled={isUpdating}
-                            onClick={() => !isActive && handleRoleChange(member.id, role)}
-                            className={`flex items-center gap-1 px-2.5 py-1 rounded border font-display text-xs tracking-wider transition-all ${
-                              isActive
-                                ? "border-primary bg-primary/15 text-primary"
-                                : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                            } ${isUpdating ? "opacity-50 cursor-wait" : "cursor-pointer"}`}
-                          >
-                            <rc.icon size={12} />
-                            {rc.label[lang as "ru" | "en"]}
-                          </button>
-                        );
-                      })}
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-1.5 flex-wrap">
+                        {roles.map((role) => {
+                          const rc = roleConfig[role];
+                          const isActive = member.clan_role === role;
+                          const isUpdating = updating === member.id;
+                          return (
+                            <button
+                              key={role}
+                              disabled={isUpdating}
+                              onClick={() => !isActive && handleRoleChange(member.id, role)}
+                              className={`flex items-center gap-1 px-2.5 py-1 rounded border font-display text-xs tracking-wider transition-all ${
+                                isActive
+                                  ? "border-primary bg-primary/15 text-primary"
+                                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                              } ${isUpdating ? "opacity-50 cursor-wait" : "cursor-pointer"}`}
+                            >
+                              <rc.icon size={12} />
+                              {rc.label[lang as "ru" | "en"]}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <button
+                        disabled={updating === member.id}
+                        onClick={() => handleDelete(member.id, member.nickname)}
+                        className="p-1.5 rounded border border-border text-muted-foreground hover:border-destructive hover:text-destructive transition-colors shrink-0"
+                        title={lang === "ru" ? "Удалить" : "Remove"}
+                      >
+                        <Trash2 size={14} />
+                      </button>
                     </div>
                   </motion.div>
                 );
               })}
 
-              {filtered.length === 0 && (
-                <p className="text-center text-muted-foreground py-8">
-                  {lang === "ru" ? "Никого не найдено" : "No members found"}
-                </p>
-              )}
+            {filtered.length === 0 && (
+              <p className="text-center text-muted-foreground py-8">
+                {lang === "ru" ? "Никого не найдено" : "No members found"}
+              </p>
+            )}
             </div>
           )}
         </div>
