@@ -15,7 +15,17 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (id.startsWith("/")) {
+      navigate(id);
+      setMenuOpen(false);
+      return;
+    }
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 300);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
     setMenuOpen(false);
   };
 

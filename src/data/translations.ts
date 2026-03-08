@@ -63,6 +63,7 @@ export const translations: Record<string, Record<string, string>> = {
     "nav.requirements": "Requirements",
     "nav.join": "Join Us",
     "nav.faq": "FAQ",
+    "nav.roster": "Roster",
 
     // Hero
     "hero.tagline": "Special Operations Unit",
