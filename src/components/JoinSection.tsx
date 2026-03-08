@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const steps = [
