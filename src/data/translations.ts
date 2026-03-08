@@ -51,6 +51,15 @@ export const translations: Record<string, Record<string, string>> = {
     "faq.q4": "Какой язык общения в клане?",
     "faq.a4": "Основной язык — русский. Знание английского приветствуется, но не обязательно.",
 
+    // Games
+    "games.title": "Наши игры",
+    "games.squad.title": "Squad",
+    "games.squad.desc": "Наша основная игра — тактический шутер с упором на командную работу, координацию и реалистичные боевые действия на масштабных картах.",
+    "games.ba.title": "Broken Arrow",
+    "games.ba.desc": "Современная военная стратегия в реальном времени с управлением крупномасштабными операциями и реалистичной техникой.",
+    "games.arma.title": "Arma Reforger",
+    "games.arma.desc": "Военный симулятор нового поколения с открытым миром, акцентом на реализм и масштабные совместные операции.",
+
     // Social
     "social.title": "Мы в соцсетях",
 
@@ -109,6 +118,15 @@ export const translations: Record<string, Record<string, string>> = {
     "faq.a3": "Yes, we hold training twice a week. Attendance is required for active members.",
     "faq.q4": "What language is used in the clan?",
     "faq.a4": "The primary language is Russian. English knowledge is welcome but not required.",
+
+    // Games
+    "games.title": "Our Games",
+    "games.squad.title": "Squad",
+    "games.squad.desc": "Our main game — a tactical shooter focused on teamwork, coordination, and realistic combat on large-scale maps.",
+    "games.ba.title": "Broken Arrow",
+    "games.ba.desc": "A modern real-time military strategy game featuring large-scale operations and realistic military hardware.",
+    "games.arma.title": "Arma Reforger",
+    "games.arma.desc": "A next-gen military simulator with an open world, emphasis on realism, and large-scale cooperative operations.",
 
     // Social
     "social.title": "Follow Us",
