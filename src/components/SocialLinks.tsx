@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedSection from "./AnimatedSection";
 
 export default function SocialLinks() {
   const { t } = useLanguage();

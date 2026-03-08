@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedSection from "./AnimatedSection";
 
 const steps = [
   { titleKey: "join.step1.title", descKey: "join.step1.desc" },
