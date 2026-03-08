@@ -22,7 +22,11 @@ export default function RequirementsSection() {
         <ul className="grid gap-4">
           {reqKeys.map((key, i) => (
             <AnimatedSection key={key} delay={i * 0.1}>
-              <li className="flex items-center gap-4 p-4 rounded-lg border border-border bg-background hover:border-primary/30 transition-colors">
+              <motion.li
+                whileHover={{ scale: 1.02, x: 6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="flex items-center gap-4 p-4 rounded-lg border border-border bg-background cursor-default"
+              >
                 <CheckCircle className="text-primary shrink-0" size={22} />
                 <span className="text-foreground/90">{t(key)}</span>
               </motion.li>

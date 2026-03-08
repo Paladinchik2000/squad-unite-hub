@@ -23,13 +23,17 @@ export default function AboutSection() {
         <div className="grid gap-8">
           {features.map((f, i) => (
             <AnimatedSection key={i} delay={i * 0.15}>
-              <div className="flex gap-5 items-start p-6 rounded-lg bg-card border border-border hover:border-primary/30 transition-colors">
+              <motion.div
+                whileHover={{ scale: 1.02, borderColor: "hsl(30 100% 50% / 0.4)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="flex gap-5 items-start p-6 rounded-lg bg-card border border-border cursor-default"
+              >
                 <f.icon className="text-primary shrink-0 mt-1" size={28} />
                 <p className="text-foreground/85 leading-relaxed">{f.text}</p>
-              </div>
+              </motion.div>
             </AnimatedSection>
           ))}
-              </motion.div>
+        </div>
       </div>
     </section>
   );
