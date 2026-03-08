@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Shield, Users, Target } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 export default function AboutSection() {
   const { t } = useLanguage();

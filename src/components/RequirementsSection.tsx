@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CheckCircle } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 const reqKeys = [
   "req.age", "req.behavior", "req.mic", "req.knowledge",
