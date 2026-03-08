@@ -181,38 +181,49 @@ export default function Admin() {
                       </div>
                     </div>
 
-                    {/* Role selector */}
-                    <div className="flex gap-1.5 flex-wrap">
-                      {roles.map((role) => {
-                        const rc = roleConfig[role];
-                        const isActive = member.clan_role === role;
-                        const isUpdating = updating === member.id;
-                        return (
-                          <button
-                            key={role}
-                            disabled={isUpdating}
-                            onClick={() => !isActive && handleRoleChange(member.id, role)}
-                            className={`flex items-center gap-1 px-2.5 py-1 rounded border font-display text-xs tracking-wider transition-all ${
-                              isActive
-                                ? "border-primary bg-primary/15 text-primary"
-                                : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                            } ${isUpdating ? "opacity-50 cursor-wait" : "cursor-pointer"}`}
-                          >
-                            <rc.icon size={12} />
-                            {rc.label[lang as "ru" | "en"]}
-                          </button>
-                        );
-                      })}
+                    {/* Role selector + delete */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-1.5 flex-wrap">
+                        {roles.map((role) => {
+                          const rc = roleConfig[role];
+                          const isActive = member.clan_role === role;
+                          const isUpdating = updating === member.id;
+                          return (
+                            <button
+                              key={role}
+                              disabled={isUpdating}
+                              onClick={() => !isActive && handleRoleChange(member.id, role)}
+                              className={`flex items-center gap-1 px-2.5 py-1 rounded border font-display text-xs tracking-wider transition-all ${
+                                isActive
+                                  ? "border-primary bg-primary/15 text-primary"
+                                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                              } ${isUpdating ? "opacity-50 cursor-wait" : "cursor-pointer"}`}
+                            >
+                              <rc.icon size={12} />
+                              {rc.label[lang as "ru" | "en"]}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <button
+                        disabled={updating === member.id}
+                        onClick={() => handleDelete(member.id, member.nickname)}
+                        className="p-1.5 rounded border border-border text-muted-foreground hover:border-destructive hover:text-destructive transition-colors shrink-0"
+                        title={lang === "ru" ? "Удалить" : "Remove"}
+                      >
+                        <Trash2 size={14} />
+                      </button>
                     </div>
                   </motion.div>
-                );
-              })}
+                </AnimatedSection>
+              );
+            })}
 
-              {filtered.length === 0 && (
-                <p className="text-center text-muted-foreground py-8">
-                  {lang === "ru" ? "Никого не найдено" : "No members found"}
-                </p>
-              )}
+            {filtered.length === 0 && (
+              <p className="text-center text-muted-foreground py-8">
+                {lang === "ru" ? "Никого не найдено" : "No members found"}
+              </p>
+            )}
             </div>
           )}
         </div>
