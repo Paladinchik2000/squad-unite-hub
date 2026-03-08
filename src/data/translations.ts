@@ -5,6 +5,7 @@ export const translations: Record<string, Record<string, string>> = {
     "nav.requirements": "Требования",
     "nav.join": "Вступить",
     "nav.faq": "FAQ",
+    "nav.roster": "Состав",
 
     // Hero
     "hero.tagline": "Отряд Специальных Операций",
