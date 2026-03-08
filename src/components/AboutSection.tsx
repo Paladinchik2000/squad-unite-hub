@@ -28,7 +28,7 @@ export default function AboutSection() {
               </div>
             </AnimatedSection>
           ))}
-        </div>
+              </motion.div>
       </div>
     </section>
   );
