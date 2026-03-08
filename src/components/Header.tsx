@@ -10,6 +10,8 @@ const anchors = ["about", "requirements", "join", "faq"];
 
 export default function Header() {
   const { lang, setLang, t } = useLanguage();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => {
