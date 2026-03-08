@@ -1,6 +1,8 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import ocoLogo from "@/assets/oco-logo.png";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 
 const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq"] as const;
@@ -8,6 +10,8 @@ const anchors = ["about", "requirements", "join", "faq"];
 
 export default function Header() {
   const { lang, setLang, t } = useLanguage();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => {
@@ -42,6 +46,13 @@ export default function Header() {
           >
             {lang === "ru" ? "EN" : "RU"}
           </button>
+          <button
+            onClick={() => navigate(user ? "/cabinet" : "/auth")}
+            className="border border-primary rounded px-3 py-1 text-xs font-display tracking-wider text-primary hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-1"
+          >
+            <User size={14} />
+            {user ? "Кабинет" : "Войти"}
+          </button>
         </nav>
 
         {/* Mobile menu toggle */}
@@ -70,6 +81,12 @@ export default function Header() {
               {t(key)}
             </button>
           ))}
+          <button
+            onClick={() => { setMenuOpen(false); navigate(user ? "/cabinet" : "/auth"); }}
+            className="block w-full text-left py-3 font-display text-sm tracking-wider text-primary"
+          >
+            {user ? "Личный кабинет" : "Войти"}
+          </button>
         </nav>
       )}
     </header>
