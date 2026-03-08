@@ -81,6 +81,12 @@ export default function Header() {
               {t(key)}
             </button>
           ))}
+          <button
+            onClick={() => { setMenuOpen(false); navigate(user ? "/cabinet" : "/auth"); }}
+            className="block w-full text-left py-3 font-display text-sm tracking-wider text-primary"
+          >
+            {user ? "Личный кабинет" : "Войти"}
+          </button>
         </nav>
       )}
     </header>
