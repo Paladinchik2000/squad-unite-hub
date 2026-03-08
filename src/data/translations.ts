@@ -119,6 +119,15 @@ export const translations: Record<string, Record<string, string>> = {
     "faq.q4": "What language is used in the clan?",
     "faq.a4": "The primary language is Russian. English knowledge is welcome but not required.",
 
+    // Games
+    "games.title": "Our Games",
+    "games.squad.title": "Squad",
+    "games.squad.desc": "Our main game — a tactical shooter focused on teamwork, coordination, and realistic combat on large-scale maps.",
+    "games.ba.title": "Broken Arrow",
+    "games.ba.desc": "A modern real-time military strategy game featuring large-scale operations and realistic military hardware.",
+    "games.arma.title": "Arma Reforger",
+    "games.arma.desc": "A next-gen military simulator with an open world, emphasis on realism, and large-scale cooperative operations.",
+
     // Social
     "social.title": "Follow Us",
 
