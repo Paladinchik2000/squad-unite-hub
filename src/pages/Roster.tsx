@@ -118,9 +118,5 @@ function RosterContent() {
 }
 
 export default function Roster() {
-  return (
-    <LanguageProvider>
-      <RosterContent />
-    </LanguageProvider>
-  );
+  return <RosterContent />;
 }
