@@ -73,6 +73,19 @@ export default function Admin() {
     setUpdating(null);
   };
 
+  const handleDelete = async (profileId: string, nickname: string) => {
+    if (!window.confirm(lang === "ru" ? `Удалить ${nickname} из клана?` : `Remove ${nickname} from clan?`)) return;
+    setUpdating(profileId);
+    const { error } = await supabase.from("profiles").delete().eq("id", profileId);
+    if (error) {
+      toast({ title: "Ошибка", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: lang === "ru" ? "Участник удалён" : "Member removed" });
+      setProfiles((prev) => prev.filter((p) => p.id !== profileId));
+    }
+    setUpdating(null);
+  };
+
   const filtered = search.trim()
     ? profiles.filter((p) => p.nickname.toLowerCase().includes(search.toLowerCase()))
     : profiles;
