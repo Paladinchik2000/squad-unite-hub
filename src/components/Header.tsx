@@ -12,6 +12,7 @@ const anchors = ["about", "requirements", "join", "faq", "/roster"];
 export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const { user } = useAuth();
+  const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
