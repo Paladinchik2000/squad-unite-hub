@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const reqKeys = [
