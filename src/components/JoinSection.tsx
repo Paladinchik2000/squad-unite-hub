@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const steps = [
@@ -45,14 +46,17 @@ export default function JoinSection() {
 
         <AnimatedSection delay={0.4}>
           <div className="text-center mt-14">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(30 100% 50% / 0.4)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               href="https://discord.gg/VtWJR3YrZy"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display text-base tracking-wider px-8 py-3 rounded hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display text-base tracking-wider px-8 py-3 rounded"
             >
               {t("join.cta")}
-            </a>
+            </motion.a>
           </div>
         </AnimatedSection>
       </div>
