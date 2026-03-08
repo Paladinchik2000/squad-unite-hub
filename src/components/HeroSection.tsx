@@ -15,7 +15,7 @@ export default function HeroSection() {
         <img
           src={ocoLogo}
           alt="ОСО — Отряд Специальных Операций"
-          className="mx-auto mb-8 h-32 sm:h-44 w-auto drop-shadow-[0_0_40px_hsl(30_100%_50%/0.3)]"
+          className="mx-auto mb-8 h-44 sm:h-60 md:h-72 w-auto drop-shadow-[0_0_40px_hsl(30_100%_50%/0.3)]"
         />
         <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-wider text-gradient mb-4">
           ОСО

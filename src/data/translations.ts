@@ -18,14 +18,13 @@ export const translations: Record<string, Record<string, string>> = {
     "about.p3": "Наша цель — создать сплочённое сообщество игроков, которые ценят командную игру выше личных достижений.",
 
     // Requirements
-    "requirements.title": "Требования к кандидатам",
-    "req.age": "Возраст от 18 лет",
-    "req.hours": "Минимум 500 часов в Squad",
-    "req.mic": "Наличие рабочего микрофона",
-    "req.discord": "Присутствие в Discord клана",
-    "req.activity": "Активность не менее 3 раз в неделю",
-    "req.discipline": "Готовность следовать командам и дисциплине",
-    "req.training": "Прохождение испытательного периода (2 недели)",
+    "requirements.title": "Критерии для вступления в клан",
+    "req.age": "Возраст — от 18 лет (исключения по возрасту определяются старшим составом)",
+    "req.behavior": "Адекватность, стрессоустойчивость, спокойствие в критических ситуациях. Токсичным персонам у нас не рады — такие люди сразу вылетают из клана",
+    "req.mic": "Наличие микрофона — обязательно",
+    "req.knowledge": "Базовое знание игры Squad — минимальное понятие о внутриигровых механиках, ориентирование по направлениям сторон света, чёткая координация",
+    "req.activity": "Активное участие в жизни клана — посещение мероприятий, клановые битвы, тренировки",
+    "req.rules": "Вступая в клан, вы подтверждаете, что ознакомлены с правилами и несёте полную ответственность за свои действия",
 
     // Join
     "join.title": "Как вступить",
@@ -76,14 +75,13 @@ export const translations: Record<string, Record<string, string>> = {
     "about.p3": "Our goal is to create a cohesive community of players who value teamwork above personal achievements.",
 
     // Requirements
-    "requirements.title": "Candidate Requirements",
-    "req.age": "Must be 18 years or older",
-    "req.hours": "Minimum 500 hours in Squad",
-    "req.mic": "Working microphone required",
-    "req.discord": "Must be active on clan Discord",
-    "req.activity": "Active at least 3 times per week",
-    "req.discipline": "Willingness to follow orders and discipline",
-    "req.training": "Complete a trial period (2 weeks)",
+    "requirements.title": "Clan Membership Requirements",
+    "req.age": "Age — 18+ (exceptions determined by senior staff)",
+    "req.behavior": "Maturity, stress resistance, composure in critical situations. Toxic individuals are not welcome — they are immediately removed from the clan",
+    "req.mic": "Microphone — required",
+    "req.knowledge": "Basic Squad knowledge — understanding of in-game mechanics, compass orientation, clear coordination",
+    "req.activity": "Active participation in clan life — events, clan battles, training sessions",
+    "req.rules": "By joining the clan, you confirm that you have read the rules and take full responsibility for your actions",
 
     // Join
     "join.title": "How to Join",
