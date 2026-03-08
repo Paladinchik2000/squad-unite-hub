@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Cabinet from "./pages/Cabinet";
+import Roster from "./pages/Roster";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
