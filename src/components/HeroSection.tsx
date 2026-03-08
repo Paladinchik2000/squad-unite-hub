@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 import ocoLogo from "@/assets/oco-logo.png";
 import heroBg from "@/assets/hero-bg.png";
 
