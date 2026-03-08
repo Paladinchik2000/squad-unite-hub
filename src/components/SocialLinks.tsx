@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 export default function SocialLinks() {
@@ -22,8 +23,11 @@ export default function SocialLinks() {
         <AnimatedSection delay={0.2}>
           <div className="flex flex-wrap justify-center gap-4">
             {links.map((link) => (
-              <a
+              <motion.a
                 key={link.label}
+                whileHover={{ scale: 1.08, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -31,7 +35,7 @@ export default function SocialLinks() {
               >
                 <span className="text-xl">{link.icon}</span>
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </div>
         </AnimatedSection>
