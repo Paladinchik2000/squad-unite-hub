@@ -10,7 +10,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { Crown, Shield, Swords, UserRound, Search, X } from "lucide-react";
+import { Crown, Shield, Swords, UserRound, Search, X, Trash2 } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 import type { Database } from "@/integrations/supabase/types";
 
