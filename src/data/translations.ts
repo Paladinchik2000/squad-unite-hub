@@ -76,6 +76,7 @@ export const translations: Record<string, Record<string, string>> = {
     "about.p1": "OCO is an organized tactical clan in Squad, built on the principles of discipline, teamwork, and strategic thinking.",
     "about.p2": "We conduct regular training sessions, participate in clan wars, and constantly improve our tactical skills. Every fighter in our unit is a reliable link in a single chain.",
     "about.p3": "Our goal is to create a cohesive community of players who value teamwork above personal achievements.",
+    "about.games": "In addition to Squad, we also play Broken Arrow and Arma Reforger.",
 
     // Requirements
     "requirements.title": "Clan Membership Requirements",
