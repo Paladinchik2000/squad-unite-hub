@@ -1,14 +1,19 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import ocoLogo from "@/assets/oco-logo.png";
+import heroBg from "@/assets/hero-bg.png";
 
 export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-military-pattern opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      <div className="absolute inset-0 bg-background/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="relative z-10 text-center px-4 animate-fade-in-up">
