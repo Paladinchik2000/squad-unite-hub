@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Shield, Users, Target } from "lucide-react";
+import { Shield, Users, Target, Gamepad2 } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
