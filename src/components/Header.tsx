@@ -108,6 +108,14 @@ export default function Header() {
           >
             {user ? "Личный кабинет" : "Войти"}
           </button>
+          {isAdmin && (
+            <button
+              onClick={() => { setMenuOpen(false); navigate("/admin"); }}
+              className="block w-full text-left py-3 font-display text-sm tracking-wider text-destructive"
+            >
+              Admin Panel
+            </button>
+          )}
         </nav>
       )}
     </header>
