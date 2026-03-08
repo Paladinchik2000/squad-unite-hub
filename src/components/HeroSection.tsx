@@ -32,14 +32,17 @@ export default function HeroSection() {
         <p className="text-muted-foreground max-w-xl mx-auto mb-10 text-sm sm:text-base">
           {t("hero.subtitle")}
         </p>
-        <a
+        <motion.a
+          whileHover={{ scale: 1.05, boxShadow: "0 0 40px hsl(30 100% 50% / 0.5)" }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
           href="https://discord.gg/VtWJR3YrZy"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display text-lg tracking-wider px-8 py-4 rounded hover:bg-primary/90 transition-colors shadow-[0_0_30px_hsl(30_100%_50%/0.3)]"
+          className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display text-lg tracking-wider px-8 py-4 rounded shadow-[0_0_30px_hsl(30_100%_50%/0.3)]"
         >
           {t("hero.cta")}
-        </a>
+        </motion.a>
       </div>
 
       {/* Bottom fade */}

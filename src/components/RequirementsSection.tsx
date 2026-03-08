@@ -25,7 +25,7 @@ export default function RequirementsSection() {
               <li className="flex items-center gap-4 p-4 rounded-lg border border-border bg-background hover:border-primary/30 transition-colors">
                 <CheckCircle className="text-primary shrink-0" size={22} />
                 <span className="text-foreground/90">{t(key)}</span>
-              </li>
+              </motion.li>
             </AnimatedSection>
           ))}
         </ul>
