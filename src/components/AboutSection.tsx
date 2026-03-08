@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Shield, Users, Target } from "lucide-react";
+import { Shield, Users, Target, Gamepad2 } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
@@ -10,6 +10,7 @@ export default function AboutSection() {
     { icon: Shield, text: t("about.p1") },
     { icon: Users, text: t("about.p2") },
     { icon: Target, text: t("about.p3") },
+    { icon: Gamepad2, text: t("about.games") },
   ];
 
   return (
