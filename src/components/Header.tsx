@@ -46,6 +46,13 @@ export default function Header() {
           >
             {lang === "ru" ? "EN" : "RU"}
           </button>
+          <button
+            onClick={() => navigate(user ? "/cabinet" : "/auth")}
+            className="border border-primary rounded px-3 py-1 text-xs font-display tracking-wider text-primary hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-1"
+          >
+            <User size={14} />
+            {user ? "Кабинет" : "Войти"}
+          </button>
         </nav>
 
         {/* Mobile menu toggle */}
