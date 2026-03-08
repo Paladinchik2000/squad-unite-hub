@@ -65,6 +65,15 @@ export default function Header() {
             <User size={14} />
             {user ? "Кабинет" : "Войти"}
           </button>
+          {isAdmin && (
+            <button
+              onClick={() => navigate("/admin")}
+              className="border border-destructive/60 rounded px-3 py-1 text-xs font-display tracking-wider text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors flex items-center gap-1"
+            >
+              <ShieldAlert size={14} />
+              Admin
+            </button>
+          )}
         </nav>
 
         {/* Mobile menu toggle */}
