@@ -1,8 +1,9 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/hooks/useAuth";
+import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useNavigate } from "react-router-dom";
 import ocoLogo from "@/assets/oco-logo.png";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 
 const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq", "nav.roster"] as const;
@@ -11,6 +12,7 @@ const anchors = ["about", "requirements", "join", "faq", "/roster"];
 export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const { user } = useAuth();
+  const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -63,6 +65,15 @@ export default function Header() {
             <User size={14} />
             {user ? "Кабинет" : "Войти"}
           </button>
+          {isAdmin && (
+            <button
+              onClick={() => navigate("/admin")}
+              className="border border-destructive/60 rounded px-3 py-1 text-xs font-display tracking-wider text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors flex items-center gap-1"
+            >
+              <ShieldAlert size={14} />
+              Admin
+            </button>
+          )}
         </nav>
 
         {/* Mobile menu toggle */}
@@ -97,6 +108,14 @@ export default function Header() {
           >
             {user ? "Личный кабинет" : "Войти"}
           </button>
+          {isAdmin && (
+            <button
+              onClick={() => { setMenuOpen(false); navigate("/admin"); }}
+              className="block w-full text-left py-3 font-display text-sm tracking-wider text-destructive"
+            >
+              Admin Panel
+            </button>
+          )}
         </nav>
       )}
     </header>
