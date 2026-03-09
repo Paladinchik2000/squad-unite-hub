@@ -10,7 +10,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { Crown, Shield, Swords, UserRound, Search, X, Trash2 } from "lucide-react";
+import { Crown, Shield, Swords, UserRound, Search, X, Trash2, Plus } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -24,6 +24,136 @@ const roleConfig: Record<ClanRole, { label: { ru: string; en: string }; icon: ty
 };
 
 const roles: ClanRole[] = ["commander", "officer", "fighter", "recruit"];
+
+function AddMemberForm({ lang, onAdded }: { lang: string; onAdded: (member: Tables<"profiles">) => void }) {
+  const [open, setOpen] = useState(false);
+  const [nickname, setNickname] = useState("");
+  const [role, setRole] = useState<ClanRole>("recruit");
+  const [hours, setHours] = useState("");
+  const [saving, setSaving] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = nickname.trim();
+    if (!trimmed) return;
+
+    setSaving(true);
+    const { data, error } = await supabase
+      .from("profiles")
+      .insert({
+        id: crypto.randomUUID(),
+        nickname: trimmed,
+        clan_role: role,
+        hours_in_game: parseInt(hours) || 0,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      toast({ title: lang === "ru" ? "Ошибка" : "Error", description: error.message, variant: "destructive" });
+    } else if (data) {
+      toast({ title: lang === "ru" ? "Участник добавлен" : "Member added" });
+      onAdded(data);
+      setNickname("");
+      setRole("recruit");
+      setHours("");
+      setOpen(false);
+    }
+    setSaving(false);
+  };
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-dashed border-primary/40 text-primary hover:bg-primary/5 transition-colors font-display text-sm tracking-wider"
+      >
+        <Plus size={16} />
+        {lang === "ru" ? "Добавить участника" : "Add member"}
+      </button>
+    );
+  }
+
+  return (
+    <motion.form
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      onSubmit={handleSubmit}
+      className="p-4 rounded-lg bg-card border border-border space-y-4"
+    >
+      <div className="flex items-center justify-between">
+        <h3 className="font-display text-sm font-semibold text-foreground tracking-wider">
+          {lang === "ru" ? "Новый участник" : "New member"}
+        </h3>
+        <button type="button" onClick={() => setOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
+          <X size={16} />
+        </button>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          placeholder={lang === "ru" ? "Никнейм *" : "Nickname *"}
+          required
+          maxLength={50}
+          className="flex-1 px-3 py-2 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors font-sans text-sm"
+        />
+        <input
+          type="number"
+          value={hours}
+          onChange={(e) => setHours(e.target.value)}
+          placeholder={lang === "ru" ? "Часы в игре" : "Hours in-game"}
+          min={0}
+          className="w-full sm:w-32 px-3 py-2 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors font-sans text-sm"
+        />
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {roles.map((r) => {
+          const rc = roleConfig[r];
+          const isActive = role === r;
+          return (
+            <button
+              key={r}
+              type="button"
+              onClick={() => setRole(r)}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded border font-display text-xs tracking-wider transition-all ${
+                isActive
+                  ? "border-primary bg-primary/15 text-primary"
+                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+              }`}
+            >
+              <rc.icon size={12} />
+              {rc.label[lang as "ru" | "en"]}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex gap-2 justify-end">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="px-3 py-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground text-sm transition-colors"
+        >
+          {lang === "ru" ? "Отмена" : "Cancel"}
+        </button>
+        <button
+          type="submit"
+          disabled={saving || !nickname.trim()}
+          className="px-4 py-1.5 rounded-lg bg-primary text-primary-foreground font-display text-sm tracking-wider hover:bg-primary/90 transition-colors disabled:opacity-50"
+        >
+          {saving
+            ? (lang === "ru" ? "Сохранение..." : "Saving...")
+            : (lang === "ru" ? "Добавить" : "Add")}
+        </button>
+      </div>
+    </motion.form>
+  );
+}
 
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
@@ -86,6 +216,10 @@ export default function Admin() {
     setUpdating(null);
   };
 
+  const handleMemberAdded = (member: Tables<"profiles">) => {
+    setProfiles((prev) => [...prev, member].sort((a, b) => a.nickname.localeCompare(b.nickname)));
+  };
+
   const filtered = search.trim()
     ? profiles.filter((p) => p.nickname.toLowerCase().includes(search.toLowerCase()))
     : profiles;
@@ -114,6 +248,11 @@ export default function Admin() {
                 ? "Управление ролями бойцов клана"
                 : "Manage clan member roles"}
             </p>
+          </AnimatedSection>
+
+          {/* Add member */}
+          <AnimatedSection delay={0.05} className="mb-6">
+            <AddMemberForm lang={lang} onAdded={handleMemberAdded} />
           </AnimatedSection>
 
           {/* Search */}
