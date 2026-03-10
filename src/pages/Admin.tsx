@@ -155,6 +155,112 @@ function AddMemberForm({ lang, onAdded }: { lang: string; onAdded: (member: Tabl
   );
 }
 
+function MemberInfo({ member, lang, updating, onUpdate }: {
+  member: Tables<"profiles">;
+  lang: string;
+  updating: string | null;
+  onUpdate: (updated: Partial<Tables<"profiles">> & { id: string }) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [nickname, setNickname] = useState(member.nickname);
+  const [hours, setHours] = useState(String(member.hours_in_game));
+  const [saving, setSaving] = useState(false);
+  const { toast } = useToast();
+
+  const handleSave = async () => {
+    const trimmed = nickname.trim();
+    if (!trimmed) return;
+    setSaving(true);
+    const newHours = parseInt(hours) || 0;
+    const { error } = await supabase
+      .from("profiles")
+      .update({ nickname: trimmed, hours_in_game: newHours, updated_at: new Date().toISOString() })
+      .eq("id", member.id);
+    if (error) {
+      toast({ title: lang === "ru" ? "Ошибка" : "Error", description: error.message, variant: "destructive" });
+    } else {
+      onUpdate({ id: member.id, nickname: trimmed, hours_in_game: newHours });
+      toast({ title: lang === "ru" ? "Сохранено" : "Saved" });
+      setEditing(false);
+    }
+    setSaving(false);
+  };
+
+  if (editing) {
+    return (
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        <Avatar className="h-10 w-10 border border-border shrink-0">
+          <AvatarImage src={member.avatar_url || undefined} />
+          <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
+            {nickname?.[0]?.toUpperCase() || "?"}
+          </AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col sm:flex-row gap-2 flex-1 min-w-0">
+          <input
+            type="text"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            maxLength={50}
+            className="px-2 py-1 rounded border border-primary/40 bg-background text-foreground text-sm font-display focus:outline-none focus:border-primary flex-1 min-w-0"
+          />
+          <input
+            type="number"
+            value={hours}
+            onChange={(e) => setHours(e.target.value)}
+            min={0}
+            className="px-2 py-1 rounded border border-border bg-background text-foreground text-sm w-20 focus:outline-none focus:border-primary"
+            placeholder="h"
+          />
+        </div>
+        <button
+          onClick={handleSave}
+          disabled={saving || !nickname.trim()}
+          className="p-1.5 rounded border border-primary text-primary hover:bg-primary/10 transition-colors shrink-0 disabled:opacity-50"
+        >
+          <Check size={14} />
+        </button>
+        <button
+          onClick={() => { setEditing(false); setNickname(member.nickname); setHours(String(member.hours_in_game)); }}
+          className="p-1.5 rounded border border-border text-muted-foreground hover:text-foreground transition-colors shrink-0"
+        >
+          <X size={14} />
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3 flex-1 min-w-0 group">
+      <Avatar className="h-10 w-10 border border-border shrink-0">
+        <AvatarImage src={member.avatar_url || undefined} />
+        <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
+          {member.nickname?.[0]?.toUpperCase() || "?"}
+        </AvatarFallback>
+      </Avatar>
+      <div className="min-w-0">
+        <p className="font-display text-sm font-semibold text-foreground truncate tracking-wide">
+          {member.nickname || (lang === "ru" ? "Без имени" : "Unnamed")}
+        </p>
+        <p className="text-xs text-muted-foreground">
+          {member.hours_in_game}h • {lang === "ru" ? "с" : "since"}{" "}
+          {new Date(member.joined_at).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US", {
+            month: "short",
+            year: "numeric",
+          })}
+        </p>
+      </div>
+      <button
+        onClick={() => setEditing(true)}
+        disabled={updating === member.id}
+        className="p-1.5 rounded border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors shrink-0 opacity-0 group-hover:opacity-100"
+        title={lang === "ru" ? "Редактировать" : "Edit"}
+      >
+        <Pencil size={14} />
+      </button>
+    </div>
+  );
+}
+
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: adminLoading } = useIsAdmin();
