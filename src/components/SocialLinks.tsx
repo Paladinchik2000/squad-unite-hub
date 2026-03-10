@@ -7,9 +7,9 @@ export default function SocialLinks() {
 
   const links = [
     { label: "Discord", href: "https://discord.gg/VtWJR3YrZy", icon: "💬" },
-    { label: "YouTube", href: "#", icon: "▶️" },
-    { label: "Twitch", href: "#", icon: "📺" },
-    { label: "TikTok", href: "#", icon: "🎵" },
+    { label: "YouTube", href: "https://www.youtube.com/@losplayoperspecsq", icon: "▶️" },
+    { label: "Twitch", href: "https://www.twitch.tv/sweetbubaleh_tv", icon: "📺" },
+    { label: "TikTok", href: "https://www.tiktok.com/@squadnaya?_r=1&_t=ZS-93UHCMTqX2b", icon: "🎵" },
   ];
 
   return (
