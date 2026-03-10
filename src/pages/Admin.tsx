@@ -298,26 +298,9 @@ export default function Admin() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg bg-card border border-border"
                   >
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
-                      <Avatar className="h-10 w-10 border border-border shrink-0">
-                        <AvatarImage src={member.avatar_url || undefined} />
-                        <AvatarFallback className="bg-muted text-muted-foreground font-display text-sm">
-                          {member.nickname?.[0]?.toUpperCase() || "?"}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="min-w-0">
-                        <p className="font-display text-sm font-semibold text-foreground truncate tracking-wide">
-                          {member.nickname || (lang === "ru" ? "Без имени" : "Unnamed")}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {member.hours_in_game}h • {lang === "ru" ? "с" : "since"}{" "}
-                          {new Date(member.joined_at).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US", {
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </p>
-                      </div>
-                    </div>
+                    <MemberInfo member={member} lang={lang} updating={updating} onUpdate={(updated) => {
+                      setProfiles((prev) => prev.map((p) => p.id === updated.id ? { ...p, ...updated } : p));
+                    }} />
 
                     <div className="flex items-center gap-3">
                       <div className="flex gap-1.5 flex-wrap">
