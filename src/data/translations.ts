@@ -138,6 +138,16 @@ export const translations: Record<string, Record<string, string>> = {
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "A next-gen military simulator with an open world, emphasis on realism, and large-scale cooperative operations.",
 
+    // Gallery
+    "gallery.title": "Gallery",
+    "gallery.subtitle": "Screenshots and videos from our combat operations",
+    "gallery.video1": "Combat operation in Squad",
+    "gallery.screenshot1": "Tactical coordination",
+    "gallery.screenshot2": "Position assault",
+    "gallery.video2": "Clan training session",
+    "gallery.screenshot3": "Joint operation",
+    "gallery.screenshot4": "Teamwork",
+
     // Social
     "social.title": "Follow Us",
 
