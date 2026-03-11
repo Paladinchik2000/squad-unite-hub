@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedSection from "./AnimatedSection";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Users, Crosshair, Clock, Trophy } from "lucide-react";
 
@@ -15,10 +15,12 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasAnimated(true);
-          const mv = useMotionValue(0);
-          const unsub = mv.on("change", (v) => setDisplay(Math.round(v)));
-          animate(mv, value, { duration, ease: "easeOut" });
-          return () => unsub();
+          const controls = animate(0, value, {
+            duration,
+            ease: "easeOut",
+            onUpdate: (v) => setDisplay(Math.round(v)),
+          });
+          return () => controls.stop();
         }
       },
       { threshold: 0.3 }
