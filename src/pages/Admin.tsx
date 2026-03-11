@@ -6,6 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AdminNewsManager from "@/components/AdminNewsManager";
 import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -356,8 +357,21 @@ export default function Admin() {
             </p>
           </AnimatedSection>
 
+          {/* News management */}
+          <AnimatedSection delay={0.05} className="mb-10">
+            <AdminNewsManager lang={lang} />
+          </AnimatedSection>
+
+          <div className="border-t border-border my-10" />
+
+          <AnimatedSection delay={0.1}>
+            <h2 className="font-display text-xl font-bold text-foreground tracking-wider mb-6">
+              {lang === "ru" ? "👥 Управление составом" : "👥 Roster Management"}
+            </h2>
+          </AnimatedSection>
+
           {/* Add member */}
-          <AnimatedSection delay={0.05} className="mb-6">
+          <AnimatedSection delay={0.15} className="mb-6">
             <AddMemberForm lang={lang} onAdded={handleMemberAdded} />
           </AnimatedSection>
 

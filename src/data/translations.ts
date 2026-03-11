@@ -60,6 +60,10 @@ export const translations: Record<string, Record<string, string>> = {
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "Военный симулятор нового поколения с открытым миром, акцентом на реализм и масштабные совместные операции.",
 
+    // News
+    "news.title": "Новости клана",
+    "news.subtitle": "Последние события и обновления от офицеров",
+
     // Stats
     "stats.title": "Клан в цифрах",
     "stats.members.label": "Бойцов в строю",
@@ -144,6 +148,10 @@ export const translations: Record<string, Record<string, string>> = {
     "games.ba.desc": "A modern real-time military strategy game featuring large-scale operations and realistic military hardware.",
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "A next-gen military simulator with an open world, emphasis on realism, and large-scale cooperative operations.",
+
+    // News
+    "news.title": "Clan News",
+    "news.subtitle": "Latest events and updates from officers",
 
     // Stats
     "stats.title": "Clan in Numbers",
