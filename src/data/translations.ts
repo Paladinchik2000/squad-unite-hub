@@ -60,6 +60,16 @@ export const translations: Record<string, Record<string, string>> = {
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "Военный симулятор нового поколения с открытым миром, акцентом на реализм и масштабные совместные операции.",
 
+    // Gallery
+    "gallery.title": "Галерея",
+    "gallery.subtitle": "Скриншоты и видео из наших боевых операций",
+    "gallery.video1": "Боевая операция в Squad",
+    "gallery.screenshot1": "Тактическая координация",
+    "gallery.screenshot2": "Штурм позиций",
+    "gallery.video2": "Клановая тренировка",
+    "gallery.screenshot3": "Совместная операция",
+    "gallery.screenshot4": "Командная работа",
+
     // Social
     "social.title": "Мы в соцсетях",
 
@@ -127,6 +137,16 @@ export const translations: Record<string, Record<string, string>> = {
     "games.ba.desc": "A modern real-time military strategy game featuring large-scale operations and realistic military hardware.",
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "A next-gen military simulator with an open world, emphasis on realism, and large-scale cooperative operations.",
+
+    // Gallery
+    "gallery.title": "Gallery",
+    "gallery.subtitle": "Screenshots and videos from our combat operations",
+    "gallery.video1": "Combat operation in Squad",
+    "gallery.screenshot1": "Tactical coordination",
+    "gallery.screenshot2": "Position assault",
+    "gallery.video2": "Clan training session",
+    "gallery.screenshot3": "Joint operation",
+    "gallery.screenshot4": "Teamwork",
 
     // Social
     "social.title": "Follow Us",
