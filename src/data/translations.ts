@@ -60,6 +60,13 @@ export const translations: Record<string, Record<string, string>> = {
     "games.arma.title": "Arma Reforger",
     "games.arma.desc": "Военный симулятор нового поколения с открытым миром, акцентом на реализм и масштабные совместные операции.",
 
+    // Stats
+    "stats.title": "Клан в цифрах",
+    "stats.members.label": "Бойцов в строю",
+    "stats.operations.label": "Проведённых операций",
+    "stats.hours.label": "Часов в бою",
+    "stats.wins.label": "Побед в клановых войнах",
+
     // Gallery
     "gallery.title": "Галерея",
     "gallery.subtitle": "Скриншоты и видео из наших боевых операций",
