@@ -118,6 +118,20 @@ export default function NewsSection() {
             ))}
           </div>
         )}
+
+        {!loading && posts.length > 0 && (
+          <AnimatedSection delay={0.3}>
+            <div className="text-center mt-10">
+              <button
+                onClick={() => navigate("/news")}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/40 text-primary font-display text-sm tracking-wider hover:bg-primary/5 transition-colors"
+              >
+                {t("news.all")}
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </AnimatedSection>
+        )}
       </div>
     </section>
   );
