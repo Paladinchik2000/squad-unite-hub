@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Cabinet from "./pages/Cabinet";
 import Roster from "./pages/Roster";
 import Admin from "./pages/Admin";
+import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/cabinet" element={<Cabinet />} />
               <Route path="/roster" element={<Roster />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/news" element={<News />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </LanguageProvider>

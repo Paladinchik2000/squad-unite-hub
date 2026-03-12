@@ -2,8 +2,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedSection from "./AnimatedSection";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { Calendar, User } from "lucide-react";
+import { Calendar, User, ArrowRight } from "lucide-react";
 
 interface NewsPost {
   id: string;
@@ -16,6 +17,7 @@ interface NewsPost {
 
 export default function NewsSection() {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -115,6 +117,20 @@ export default function NewsSection() {
               </AnimatedSection>
             ))}
           </div>
+        )}
+
+        {!loading && posts.length > 0 && (
+          <AnimatedSection delay={0.3}>
+            <div className="text-center mt-10">
+              <button
+                onClick={() => navigate("/news")}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/40 text-primary font-display text-sm tracking-wider hover:bg-primary/5 transition-colors"
+              >
+                {t("news.all")}
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </AnimatedSection>
         )}
       </div>
     </section>
