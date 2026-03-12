@@ -63,6 +63,7 @@ export const translations: Record<string, Record<string, string>> = {
     // News
     "news.title": "Новости клана",
     "news.subtitle": "Последние события и обновления от офицеров",
+    "news.all": "Все новости",
 
     // Stats
     "stats.title": "Клан в цифрах",
