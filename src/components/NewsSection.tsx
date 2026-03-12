@@ -17,6 +17,7 @@ interface NewsPost {
 
 export default function NewsSection() {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
 

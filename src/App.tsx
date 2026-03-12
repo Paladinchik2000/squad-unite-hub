@@ -29,6 +29,7 @@ const App = () => (
               <Route path="/cabinet" element={<Cabinet />} />
               <Route path="/roster" element={<Roster />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/news" element={<News />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </LanguageProvider>
