@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Cabinet from "./pages/Cabinet";
 import Roster from "./pages/Roster";
 import Admin from "./pages/Admin";
+import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
