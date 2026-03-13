@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 interface NewsPost {
   id: string;
@@ -78,6 +79,11 @@ export default function News() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Новости клана ОСО | Squad Clan News"
+        description="Последние новости и обновления тактического клана ОСО в Squad."
+        path="/news"
+      />
       <Header />
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
