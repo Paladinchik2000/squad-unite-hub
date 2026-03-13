@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 interface NewsPost {
   id: string;
