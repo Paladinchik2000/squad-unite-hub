@@ -4,8 +4,7 @@ import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useNavigate } from "react-router-dom";
 import ocoLogo from "@/assets/oco-logo.png";
 import { Menu, X, User, ShieldAlert } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useState } from "react";
 
 const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq", "nav.roster", "nav.news"] as const;
 const anchors = ["about", "requirements", "join", "faq", "/roster", "/news"];
@@ -16,18 +15,6 @@ export default function Header() {
   const { isAdmin } = useIsAdmin();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const lastY = useRef(0);
-
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const dy = y - lastY.current;
-    lastY.current = y;
-    setHidden(dy > 5 && y > 80 && !menuOpen);
-    setScrolled(y > 20);
-  });
 
   const scrollTo = (id: string) => {
     if (id.startsWith("/")) {
@@ -45,16 +32,7 @@ export default function Header() {
   };
 
   return (
-    <motion.header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-border backdrop-blur-md"
-      initial={{ y: 0 }}
-      animate={{
-        y: hidden ? "-100%" : "0%",
-        backgroundColor: scrolled ? "hsl(var(--background) / 0.95)" : "hsl(var(--background) / 0.7)",
-        borderColor: scrolled ? "hsl(var(--border))" : "transparent",
-      }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
           <img src={ocoLogo} alt="ОСО Logo" className="h-10 w-auto" />
@@ -140,6 +118,6 @@ export default function Header() {
           )}
         </nav>
       )}
-    </motion.header>
+    </header>
   );
 }
