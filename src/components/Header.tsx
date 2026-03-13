@@ -6,8 +6,8 @@ import ocoLogo from "@/assets/oco-logo.png";
 import { Menu, X, User, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 
-const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq", "nav.roster"] as const;
-const anchors = ["about", "requirements", "join", "faq", "/roster"];
+const navKeys = ["nav.about", "nav.requirements", "nav.join", "nav.faq", "nav.roster", "nav.news"] as const;
+const anchors = ["about", "requirements", "join", "faq", "/roster", "/news"];
 
 export default function Header() {
   const { lang, setLang, t } = useLanguage();
