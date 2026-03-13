@@ -58,6 +58,11 @@ function RosterContent() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Состав клана ОСО | Squad Clan Roster"
+        description="Бойцы Отряда Специальных Операций — командиры, офицеры и рядовые бойцы клана ОСО."
+        path="/roster"
+      />
       <Header />
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-5xl">
