@@ -6,7 +6,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+
+interface NavPost {
+  id: string;
+  title: string;
+}
 
 interface NewsPost {
   id: string;
