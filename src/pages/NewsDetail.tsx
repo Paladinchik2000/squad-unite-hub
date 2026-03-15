@@ -6,7 +6,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+
+interface NavPost {
+  id: string;
+  title: string;
+}
 
 interface NewsPost {
   id: string;
@@ -22,6 +27,8 @@ export default function NewsDetail() {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const [post, setPost] = useState<NewsPost | null>(null);
+  const [prevPost, setPrevPost] = useState<NavPost | null>(null);
+  const [nextPost, setNextPost] = useState<NavPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -58,6 +65,32 @@ export default function NewsDetail() {
         image_url: data.image_url,
         author_nickname: profile?.nickname || (lang === "ru" ? "Офицер" : "Officer"),
       });
+
+      // Fetch prev/next posts (by created_at order)
+      const currentDate = data.created_at;
+
+      const [{ data: prev }, { data: next }] = await Promise.all([
+        supabase
+          .from("clan_news")
+          .select("id, title")
+          .eq("published", true)
+          .lt("created_at", currentDate)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("clan_news")
+          .select("id, title")
+          .eq("published", true)
+          .gt("created_at", currentDate)
+          .order("created_at", { ascending: true })
+          .limit(1)
+          .maybeSingle(),
+      ]);
+
+      setPrevPost(prev ? { id: prev.id, title: prev.title } : null);
+      setNextPost(next ? { id: next.id, title: next.title } : null);
+
       setLoading(false);
     };
 
@@ -135,6 +168,40 @@ export default function NewsDetail() {
                 <div className="text-foreground/90 leading-relaxed whitespace-pre-line text-base">
                   {post.content}
                 </div>
+
+                {/* Prev / Next navigation */}
+                {(prevPost || nextPost) && (
+                  <nav className="flex items-stretch gap-4 mt-12 pt-8 border-t border-border">
+                    {prevPost ? (
+                      <button
+                        onClick={() => navigate(`/news/${prevPost.id}`)}
+                        className="flex-1 flex items-center gap-3 text-left p-4 rounded-lg border border-border hover:border-primary/40 transition-colors group"
+                      >
+                        <ChevronLeft size={18} className="text-muted-foreground group-hover:text-primary shrink-0" />
+                        <div className="min-w-0">
+                          <span className="text-xs text-muted-foreground font-display">
+                            {lang === "ru" ? "Предыдущая" : "Previous"}
+                          </span>
+                          <p className="text-sm text-foreground truncate">{prevPost.title}</p>
+                        </div>
+                      </button>
+                    ) : <div className="flex-1" />}
+                    {nextPost ? (
+                      <button
+                        onClick={() => navigate(`/news/${nextPost.id}`)}
+                        className="flex-1 flex items-center justify-end gap-3 text-right p-4 rounded-lg border border-border hover:border-primary/40 transition-colors group"
+                      >
+                        <div className="min-w-0">
+                          <span className="text-xs text-muted-foreground font-display">
+                            {lang === "ru" ? "Следующая" : "Next"}
+                          </span>
+                          <p className="text-sm text-foreground truncate">{nextPost.title}</p>
+                        </div>
+                        <ChevronRight size={18} className="text-muted-foreground group-hover:text-primary shrink-0" />
+                      </button>
+                    ) : <div className="flex-1" />}
+                  </nav>
+                )}
               </article>
             </AnimatedSection>
           ) : null}
