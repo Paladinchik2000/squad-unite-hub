@@ -27,6 +27,8 @@ export default function NewsDetail() {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const [post, setPost] = useState<NewsPost | null>(null);
+  const [prevPost, setPrevPost] = useState<NavPost | null>(null);
+  const [nextPost, setNextPost] = useState<NavPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
