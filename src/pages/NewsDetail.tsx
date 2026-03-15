@@ -168,6 +168,40 @@ export default function NewsDetail() {
                 <div className="text-foreground/90 leading-relaxed whitespace-pre-line text-base">
                   {post.content}
                 </div>
+
+                {/* Prev / Next navigation */}
+                {(prevPost || nextPost) && (
+                  <nav className="flex items-stretch gap-4 mt-12 pt-8 border-t border-border">
+                    {prevPost ? (
+                      <button
+                        onClick={() => navigate(`/news/${prevPost.id}`)}
+                        className="flex-1 flex items-center gap-3 text-left p-4 rounded-lg border border-border hover:border-primary/40 transition-colors group"
+                      >
+                        <ChevronLeft size={18} className="text-muted-foreground group-hover:text-primary shrink-0" />
+                        <div className="min-w-0">
+                          <span className="text-xs text-muted-foreground font-display">
+                            {lang === "ru" ? "Предыдущая" : "Previous"}
+                          </span>
+                          <p className="text-sm text-foreground truncate">{prevPost.title}</p>
+                        </div>
+                      </button>
+                    ) : <div className="flex-1" />}
+                    {nextPost ? (
+                      <button
+                        onClick={() => navigate(`/news/${nextPost.id}`)}
+                        className="flex-1 flex items-center justify-end gap-3 text-right p-4 rounded-lg border border-border hover:border-primary/40 transition-colors group"
+                      >
+                        <div className="min-w-0">
+                          <span className="text-xs text-muted-foreground font-display">
+                            {lang === "ru" ? "Следующая" : "Next"}
+                          </span>
+                          <p className="text-sm text-foreground truncate">{nextPost.title}</p>
+                        </div>
+                        <ChevronRight size={18} className="text-muted-foreground group-hover:text-primary shrink-0" />
+                      </button>
+                    ) : <div className="flex-1" />}
+                  </nav>
+                )}
               </article>
             </AnimatedSection>
           ) : null}
