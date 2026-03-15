@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -21,6 +22,7 @@ const POSTS_PER_PAGE = 6;
 
 export default function News() {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -111,9 +113,10 @@ export default function News() {
               {posts.map((post, i) => (
                 <AnimatedSection key={post.id} delay={i * 0.08}>
                   <motion.article
+                    onClick={() => navigate(`/news/${post.id}`)}
                     whileHover={{ scale: 1.005, borderColor: "hsl(30 100% 50% / 0.4)" }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="rounded-xl bg-card border border-border overflow-hidden"
+                    className="rounded-xl bg-card border border-border overflow-hidden cursor-pointer"
                   >
                     {post.image_url && (
                       <img
@@ -127,7 +130,7 @@ export default function News() {
                       <h2 className="font-display text-xl font-bold text-foreground mb-3">
                         {post.title}
                       </h2>
-                      <p className="text-foreground/80 leading-relaxed whitespace-pre-line mb-4">
+                      <p className="text-foreground/80 leading-relaxed whitespace-pre-line mb-4 line-clamp-3">
                         {post.content}
                       </p>
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
