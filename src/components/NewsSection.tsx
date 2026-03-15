@@ -80,9 +80,10 @@ export default function NewsSection() {
             {posts.map((post, i) => (
               <AnimatedSection key={post.id} delay={i * 0.1}>
                 <motion.article
+                  onClick={() => navigate(`/news/${post.id}`)}
                   whileHover={{ scale: 1.01, borderColor: "hsl(30 100% 50% / 0.4)" }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="rounded-xl bg-card border border-border overflow-hidden"
+                  className="rounded-xl bg-card border border-border overflow-hidden cursor-pointer"
                 >
                   {post.image_url && (
                     <img

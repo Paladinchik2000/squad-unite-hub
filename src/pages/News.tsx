@@ -130,7 +130,7 @@ export default function News() {
                       <h2 className="font-display text-xl font-bold text-foreground mb-3">
                         {post.title}
                       </h2>
-                      <p className="text-foreground/80 leading-relaxed whitespace-pre-line mb-4">
+                      <p className="text-foreground/80 leading-relaxed whitespace-pre-line mb-4 line-clamp-3">
                         {post.content}
                       </p>
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
