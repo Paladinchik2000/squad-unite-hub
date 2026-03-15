@@ -65,6 +65,32 @@ export default function NewsDetail() {
         image_url: data.image_url,
         author_nickname: profile?.nickname || (lang === "ru" ? "Офицер" : "Officer"),
       });
+
+      // Fetch prev/next posts (by created_at order)
+      const currentDate = data.created_at;
+
+      const [{ data: prev }, { data: next }] = await Promise.all([
+        supabase
+          .from("clan_news")
+          .select("id, title")
+          .eq("published", true)
+          .lt("created_at", currentDate)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("clan_news")
+          .select("id, title")
+          .eq("published", true)
+          .gt("created_at", currentDate)
+          .order("created_at", { ascending: true })
+          .limit(1)
+          .maybeSingle(),
+      ]);
+
+      setPrevPost(prev ? { id: prev.id, title: prev.title } : null);
+      setNextPost(next ? { id: next.id, title: next.title } : null);
+
       setLoading(false);
     };
 
