@@ -22,6 +22,7 @@ const POSTS_PER_PAGE = 6;
 
 export default function News() {
   const { t, lang } = useLanguage();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
