@@ -104,6 +104,23 @@ export default function NewsDetail() {
       )
     : "";
 
+  const handleShareDiscord = () => {
+    if (!post) return;
+    const url = `${window.location.origin}/news/${post.id}`;
+    const text = `${post.title}\n\n${url}`;
+    navigator.clipboard.writeText(text).then(() => {
+      alert(lang === "ru" ? "Ссылка скопирована! Вставьте в Discord" : "Link copied! Paste into Discord");
+    });
+  };
+
+  const handleShareTelegram = () => {
+    if (!post) return;
+    const url = `${window.location.origin}/news/${post.id}`;
+    const text = `${post.title} — ОСО`;
+    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    window.open(telegramUrl, "_blank", "width=600,height=400");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {post && (
