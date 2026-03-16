@@ -65,6 +65,11 @@ export const translations: Record<string, Record<string, string>> = {
     "news.title": "Новости клана",
     "news.subtitle": "Последние события и обновления от офицеров",
     "news.all": "Все новости",
+    "news.share": "Поделиться:",
+    "news.share.discord": "Ссылка скопирована! Вставьте в Discord",
+    "news.share.telegram": "Поделиться в Telegram",
+    "news.prev": "Предыдущая",
+    "news.next": "Следующая",
 
     // Stats
     "stats.title": "Клан в цифрах",
